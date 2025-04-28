@@ -1,0 +1,706 @@
+/* Основные стили для приложения */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Стили для карточек рецептов */
+.recipe-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-card .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+.recipe-card .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-card .card-text {
+    flex-grow: 1;
+}
+
+.recipe-card .card-footer {
+    background-color: transparent;
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+/* Стили для категорий */
+.category-badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.recipe-category {
+    background-color: #e9ecef;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.recipe-category .remove-category {
+    margin-left: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #fff;
+}
+
+/* Стили для ингредиентов */
+.ingredients-list {
+    padding-left: 20px;
+}
+
+.ingredient-item {
+    margin-bottom: 10px;
+}
+
+/* Стили для плана питания */
+.meal-cell {
+    min-height: 100px;
+    vertical-align: top;
+    cursor: pointer;
+}
+
+.meal-cell:hover {
+    background-color: rgba(0, 123, 255, 0.05);
+}
+
+.meal-item {
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 5px;
+    border-left: 3px solid #007bff;
+    cursor: pointer;
+    position: relative;
+    padding-right: 30px;
+}
+
+.meal-item:hover {
+    background-color: #e9ecef;
+}
+
+.meal-item .remove-meal {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #dc3545;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 4px;
+    z-index: 5;
+    margin-left: 6px; /* Добавляем отступ слева от крестика */
+}
+
+/* На больших экранах крестики не видны, появляются только при наведении */
+@media (min-width: 769px) {
+    .meal-item .remove-meal {
+        display: none; /* Скрываем по умолчанию */
+    }
+    
+    .meal-item:hover .remove-meal {
+        display: inline-block; /* Показываем при наведении */
+    }
+}
+
+
+/* На маленьких экранах крестики всегда видны */
+@media (max-width: 768px) {
+    .meal-item .remove-meal {
+        display: inline-block !important; /* Всегда показываем */
+        font-size: 1.25rem; /* Увеличиваем размер для удобства на мобильных */
+        padding: 8px 8px 8px 12px; /* Увеличиваем область нажатия, больше слева */
+        margin-left: 10px; /* Больший отступ слева на маленьких экранах */
+    }
+    
+    /* Увеличиваем целевую область нажатия */
+    .meal-item .remove-meal:after {
+        content: '';
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        bottom: -10px;
+        left: -12px; /* Увеличенная область слева */
+        z-index: -1;
+    }
+}
+
+/* Общие стили для элементов плана питания */
+.meal-item {
+    position: relative;
+    padding-right: 36px; /* Увеличиваем отступ справа для кнопки удаления */
+}
+
+/* Стили для списка покупок */
+#shopping-list .list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checked-item {
+    text-decoration: line-through;
+    color: #6c757d;
+}
+
+/* Фиксированная общая стоимость внизу экрана - с голубым фоном и центрированием */
+.shopping-list-fixed-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #e7f5ff;
+    padding: 15px 0;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.shopping-list-fixed-footer .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* #shopping-list-total {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    background-color: #e7f5ff;
+    border: none;
+    padding: 0;
+} */
+
+#shopping-list-total {
+    border: none;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #7abbe9;
+    padding: 15px 0;
+    margin: 0 auto;
+    box-shadow: 0 -2px 10px  #e7f5ff;
+    z-index: 1000;
+    width: 100%;
+    color: #e7f5ff;
+}
+
+#shopping-list-total-price {
+    font-weight: bold;
+}
+
+/* Добавляем отступ к списку покупок снизу */
+#shopping-list {
+    margin-bottom: 70px;
+}
+
+/* Стили для модальных окон */
+.modal-lg {
+    max-width: 800px;
+}
+
+/* Стили для инструкций */
+.instruction-steps {
+    white-space: pre-line;
+}
+
+/* Стили для предпросмотра изображения */
+#image-preview {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+/* Поле стоимости в модальном окне */
+#recipe-total-cost {
+    color: #28a745;
+}
+
+/* Стили для модального окна выбора рецепта */
+#recipe-list-in-modal {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#recipe-list-in-modal .list-group-item-action:hover {
+    background-color: #f8f9fa;
+}
+
+/* Стили для сортировки рецептов */
+#sort-filter {
+    cursor: pointer;
+}
+
+/* Адаптивные стили */
+@media (max-width: 768px) {
+    .recipe-actions {
+        flex-direction: column;
+    }
+    
+    .recipe-actions button {
+        margin-bottom: 5px;
+        width: 100%;
+    }
+    
+    .modal-footer {
+        flex-direction: column;
+    }
+    
+    .modal-footer button {
+        margin-bottom: 5px;
+        width: 100%;
+    }
+    
+    .table-responsive {
+        font-size: 0.85rem;
+    }
+}
+
+/* Анимации */
+.fade-in {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Стили для категорий */
+#categories-list .list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.category-actions {
+    display: none;
+}
+
+#categories-list .list-group-item:hover .category-actions {
+    display: block;
+}
+
+/* Стили для печати списка покупок */
+@media print {
+    header, nav, button, .shopping-item-checkbox {
+        display: none !important;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .checked-item {
+        display: none !important;
+    }
+    
+    body {
+        font-size: 14px;
+    }
+    
+    h2 {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+    
+    .form-check-label {
+        display: block;
+        padding-left: 0;
+    }
+    
+    .card {
+        border: none;
+    }
+    
+    .card-body {
+        padding: 0;
+    }
+}
+
+.sort-btn.active {
+    background-color: #007bff;
+    color: white;
+}
+
+/* В темной теме */
+body.bg-dark .sort-btn.active {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.clear-search-btn {
+    background: none;
+    border: none;
+    color: #6c757d;
+    padding: 0 10px;
+}
+
+.clear-search-btn:hover, .clear-search-btn:focus {
+    color: #343a40;
+    background: none;
+    border: none;
+}
+
+/* Фиксированная кнопка вверх */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+}
+
+/* Фиксированная кнопка добавления рецепта */
+.fixed-add-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 990;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* При прокрутке кнопка становится более заметной */
+.scrolled .fixed-add-button {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Стиль для кнопки добавления рецепта */
+.add-recipe-button {
+    position: fixed;
+    bottom: 80px; /* Размещаем выше фиксированного футера */
+    right: 20px;
+    z-index: 990;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.add-recipe-button .fas {
+    font-size: 1.2rem;
+}
+
+/* Скрываем текст кнопки, показываем только иконку */
+.add-recipe-button span {
+    display: none;
+}
+
+/* Скрываем ненужные кнопки */
+#prev-week-btn, #next-week-btn, #print-shopping-list-btn {
+    display: none !important;
+}
+
+/* Стили для индикации процентов БЖУ */
+.nutrition-percent {
+    font-weight: bold;
+    margin-left: 5px;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.85rem;
+}
+
+.nutrition-percent.good {
+    background-color: rgba(40, 167, 69, 0.15);
+    color: #28a745;
+}
+
+.nutrition-percent.warning {
+    background-color: rgba(255, 193, 7, 0.15);
+    color: #fd7e14;
+}
+
+.nutrition-percent.danger {
+    background-color: rgba(220, 53, 69, 0.15);
+    color: #dc3545;
+}
+
+/* Стили для элементов сортировки */
+.sort-controls {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.sort-control {
+    margin-right: 10px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.sort-label {
+    font-weight: 500;
+    margin-right: 5px;
+}
+
+.sort-btn {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2px;
+    background-color: #e9ecef;
+    border-color: #ced4da;
+}
+
+.sort-btn:hover {
+    background-color: #dee2e6;
+}
+
+.sort-btn.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+@media (max-width: 768px) {
+    .sort-controls {
+        flex-direction: column;
+    }
+    
+    .sort-control {
+        margin-bottom: 8px;
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .sort-btn-group {
+        display: flex;
+    }
+}
+
+/* Стили для элементов сортировки */
+.sort-controls {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.sort-control {
+    margin-right: 10px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.sort-label {
+    font-weight: 500;
+    margin-right: 5px;
+    font-size: 0.9rem;
+}
+
+.sort-btn, .sort-btn-modal {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2px;
+    background-color: #e9ecef;
+    border-color: #ced4da;
+}
+
+.sort-btn:hover, .sort-btn-modal:hover {
+    background-color: #dee2e6;
+}
+
+.sort-btn.active, .sort-btn-modal.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+@media (max-width: 768px) {
+    .sort-controls {
+        flex-direction: column;
+    }
+    
+    .sort-control {
+        margin-bottom: 8px;
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .sort-btn-group {
+        display: flex;
+    }
+}
+
+/* Стили для формы авторизации */
+#login-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.auth-header {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+#auth-error {
+    display: none;
+    margin-top: 10px;
+}
+
+.user-controls {
+    margin-left: auto;
+    padding-right: 15px;
+}
+
+#user-info {
+    margin-right: 10px;
+    font-weight: 500;
+}
+
+.login-button {
+    margin-bottom: 10px;
+}
+
+.google-button {
+    background-color: #ffffff;
+    color: #757575;
+    border: 1px solid #dddddd;
+}
+
+.google-button:hover {
+    background-color: #f5f5f5;
+}
+
+.google-icon {
+    margin-right: 10px;
+}
+
+/* Стили для фиксированного заголовка */
+.app-header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative; /* Меняем с sticky на relative */
+    width: 100%;
+    padding: 0;
+    margin-bottom: 20px; /* Добавляем отступ снизу */
+}
+
+.app-header h1 {
+    font-size: 2rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.user-controls-container {
+    background-color: #f8f9fa;
+    padding: 8px 15px;
+    border-top: 1px solid #e9ecef;
+}
+
+.user-controls {
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Отступ для основного контента, чтобы он не перекрывался с хедером */
+#app-container .container {
+    padding-top: 20px;
+}
+
+/* Стили для адаптивного отображения кнопки выхода */
+@media (max-width: 576px) {
+    .logout-text {
+        display: none;
+    }
+    
+    #logout-btn {
+        padding: 0.25rem 0.5rem;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #logout-btn i {
+        margin: 0;
+    }
+    
+    .user-controls-container {
+        padding: 5px 10px;
+    }
+    
+    #user-info {
+        font-size: 0.8rem;
+    }
+}
