@@ -1734,6 +1734,15 @@ function deleteRecipe(recipeId) {
         alert("Vous devez être connecté pour effectuer cette action");
         return;
     }
+
+    // Добавляем подтверждение удаления с более подробным сообщением
+    const recipe = recipes.find(r => r.id === recipeId);
+    const recipeName = recipe ? recipe.name : 'cette recette';
+    
+    if (!confirm(`Êtes-vous sûr de vouloir supprimer "${recipeName}" ? Cette action ne peut pas être annulée.`)) {
+        return; // Пользователь отменил удаление
+    }
+
     try {
         console.log("Начало функции deleteRecipe, ID:", recipeId);
         
