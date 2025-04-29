@@ -704,3 +704,118 @@ body.bg-dark .sort-btn.active {
         font-size: 0.8rem;
     }
 }
+
+/* Адаптивное отображение кнопки очистки плана */
+@media (max-width: 576px) {
+    .clear-plan-text {
+        display: none;
+    }
+    
+    #clear-meal-plan-btn {
+        padding: 0.375rem 0.5rem;
+        border-radius: 4px;
+    }
+    
+    #clear-meal-plan-btn i {
+        margin: 0;
+    }
+}
+
+/* Общие стили для кнопки */
+#clear-meal-plan-btn i {
+    margin-right: 5px;
+}
+
+/* Стили для карточек категорий */
+.categories-card {
+    height: 100%;
+}
+
+/* Добавляем отступ между карточками на маленьких экранах */
+@media (max-width: 767.98px) {
+    .recipe-categories-card {
+        margin-bottom: 20px;
+    }
+    
+    /* Альтернативный вариант - добавить разделитель */
+    .categories-section .col-md-6:first-child {
+        margin-bottom: 25px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #e9ecef;
+    }
+}
+
+/* Адаптивное отображение кнопок добавления категорий */
+@media (max-width: 576px) {
+    .add-btn-text {
+        display: none;
+    }
+    
+    .add-category-btn {
+        padding: 0.25rem 0.5rem;
+        min-width: 32px;
+        height: 32px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .add-category-btn i {
+        margin: 0;
+    }
+}
+
+/* Общие стили для кнопок */
+.add-category-btn i {
+    margin-right: 5px;
+}
+
+/* Оптимизация вкладок для маленьких экранов */
+@media (max-width: 576px) {
+    .nav-tabs .nav-link {
+        padding: 0.4rem 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    /* Уменьшаем правый отступ у предпоследнего пункта */
+    .nav-tabs .nav-item:nth-last-child(2) .nav-link {
+        padding-right: 0.4rem;
+    }
+    
+    /* Уменьшаем левый отступ у второго пункта */
+    .nav-tabs .nav-item:nth-child(2) .nav-link {
+        padding-left: 0.4rem;
+    }
+}
+
+/* Для очень маленьких экранов можно быть еще агрессивнее */
+@media (max-width: 359px) {
+    .nav-tabs .nav-link {
+        padding: 0.3rem 0.3rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* Общие стили для кнопок с иконками на малых экранах */
+@media (max-width: 576px) {
+    /* Стиль для всех кнопок только с иконками */
+    .btn-icon-only {
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    /* Убираем отступы у иконок внутри кнопок */
+    .btn-icon-only i {
+        margin: 0;
+    }
+    
+    /* Уменьшаем размер кнопок в заголовках карточек */
+    .card-header .btn-icon-only {
+        width: 32px;
+        height: 32px;
+    }
+}
