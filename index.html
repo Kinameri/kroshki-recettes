@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Подключаем свои стили -->
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Фавикон -->
+    <link rel="icon" href="favicon.ico">
+<link rel="shortcut icon" href="favicon.ico">
 </head>
 <body>
     <!-- Форма авторизации -->
@@ -57,22 +61,22 @@
                 </div>
             </header>
         
-        <nav class="mb-4">
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#" id="recipes-tab">Recettes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" id="meal-plan-tab">Plan de repas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" id="shopping-list-tab">Liste d'achats</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" id="categories-tab">Catégories</a>
-                </li>
-            </ul>
-        </nav>
+            <nav class="mb-4">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" id="recipes-tab">Recettes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="meal-plan-tab">Plan de repas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="shopping-list-tab">Liste d'achats</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="categories-tab">Catégories</a>
+                    </li>
+                </ul>
+            </nav>
         
         <!-- Секция рецептов -->
         <section id="recipes-section">
@@ -132,9 +136,10 @@
         <!-- Секция плана питания -->
         <section id="meal-plan-section" style="display: none;">
             <div class="d-flex justify-content-between mb-3">
-                <h2>Plan de repas pour la semaine</h2>
-                <button class="btn btn-danger" id="clear-meal-plan-btn">
-                    <i class="fas fa-trash"></i> Effacer le plan
+                <h2>Plan de repas</h2>
+                <button class="btn btn-danger btn-icon-only" id="clear-meal-plan-btn">
+                    <i class="fas fa-trash"></i> 
+                    <span class="clear-plan-text">Effacer le plan</span>
                 </button>
             </div>
             
@@ -254,52 +259,57 @@
         </section>
         
         <!-- Секция категорий -->
-<section id="categories-section" style="display: none;">
-    <div class="d-flex justify-content-between mb-3">
-        <h2>Catégories</h2>
-    </div>
-    
-    <div class="row mb-4">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Catégories de plats</h5>
-<button class="btn btn-sm btn-primary" id="add-recipe-category-btn">
-    <i class="fas fa-plus"></i> Ajouter
-</button>
+        <section id="categories-section" style="display: none;">
+            <div class="d-flex justify-content-between mb-3">
+                <h2>Catégories</h2>
+            </div>
+            
+            <div class="row mb-4">
+                <!-- Категории блюд -->
+                <div class="col-md-6">
+                    <div class="card categories-card recipe-categories-card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Catégories de plats</h5>
+                            <button class="btn btn-sm btn-primary add-category-btn btn-icon-only" id="add-recipe-category-btn">
+                                <i class="fas fa-plus"></i> 
+                                <span class="add-btn-text">Ajouter</span>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <ul id="recipe-categories-list" class="list-group">
+                                <!-- Категории блюд будут здесь -->
+                            </ul>
+                            <div class="text-center py-4 text-muted" id="no-recipe-categories-message" style="display: none;">
+                                <i class="fas fa-utensils fa-2x mb-3"></i>
+                                <p>Vous n'avez pas encore de catégories de plats</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <ul id="recipe-categories-list" class="list-group">
-                        <!-- Сюда будут добавляться категории блюд -->
-                    </ul>
-                    <div class="text-center py-4 text-muted" id="no-recipe-categories-message" style="display: none;">
-                        <i class="fas fa-utensils fa-2x mb-3"></i>
-                        <p>Vous n'avez pas encore de catégories de plats</p>
+                
+                <!-- Категории ингредиентов -->
+                <div class="col-md-6">
+                    <div class="card categories-card ingredient-categories-card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Catégories d'ingrédients</h5>
+                            <button class="btn btn-sm btn-primary add-category-btn btn-icon-only" id="add-ingredient-category-btn">
+                                <i class="fas fa-plus"></i> 
+                                <span class="add-btn-text">Ajouter</span>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <ul id="ingredient-categories-list" class="list-group">
+                                <!-- Категории ингредиентов будут здесь -->
+                            </ul>
+                            <div class="text-center py-4 text-muted" id="no-ingredient-categories-message" style="display: none;">
+                                <i class="fas fa-shopping-basket fa-2x mb-3"></i>
+                                <p>Vous n'avez pas encore de catégories d'ingrédients</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Catégories d'ingrédients</h5>
-<button class="btn btn-sm btn-primary" id="add-ingredient-category-btn">
-    <i class="fas fa-plus"></i> Ajouter
-</button>
-                </div>
-                <div class="card-body">
-                    <ul id="ingredient-categories-list" class="list-group">
-                        <!-- Сюда будут добавляться категории продуктов -->
-                    </ul>
-                    <div class="text-center py-4 text-muted" id="no-ingredient-categories-message" style="display: none;">
-                        <i class="fas fa-shopping-basket fa-2x mb-3"></i>
-                        <p>Vous n'avez pas encore de catégories d'ingrédients</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
     
     <!-- Модальное окно для добавления/редактирования рецепта -->
     <div class="modal fade" id="recipe-modal" tabindex="-1" data-bs-backdrop="static">
